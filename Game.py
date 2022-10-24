@@ -1,4 +1,5 @@
 from Sky import Sky
+from Ship import Ship
 import pygame
 import random
 
@@ -14,13 +15,9 @@ class Game:
         #Cargar la hoja de imágenes        
         self.sprites= pygame.image.load("sprites.png")        
         self.shipsprite= pygame.Surface((64,64)).convert()
-        self.shipsprite.blit(self.sprites,(0,0), (252,436, 64,64))
-        
-        
-        
-        
-        
-        
+        self.shipsprite.blit(self.sprites,(0,0), (252,436, 64,64)) 
+            
+# -------------------------------------------------------------------------------        
         
     def run(self):
         
@@ -53,7 +50,13 @@ class Game:
             
             self.clock.tick(self.fps)
             
+    def checkKeys(self):
             
+        keys=pygame.key.get_pressed()
+        if keys[pygame.K_RIGHT]: self.snake.direction="RIGHT"
+        elif keys[pygame.K_LEFT]: self.snake.direction="LEFT"     
+        
+        self.checkKeys()   
             
 
 myGame=Game()

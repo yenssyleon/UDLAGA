@@ -10,6 +10,7 @@ move()
 class Ship:
     def __init__(self):
         self.direction="RIGHT"
+        
     def updateCoordinates(self, x, y):
             
         if self.direction=="LEFT":
@@ -19,3 +20,8 @@ class Ship:
             x=x+1
             
         return(x,y)
+    
+    def move(self):
+        
+        (x,y)=self.updateCoordinates(x,y)
+        (x,y)=self.screen.blit
