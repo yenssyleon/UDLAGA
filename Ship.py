@@ -1,27 +1,25 @@
 """
-BULLET 
+SHIP
 ---------------
-x
+x ----> Cambia
 y
-Velocity
+Bullet
 ---------------
 move()    
 """
 class Ship:
     def __init__(self):
+        
         self.direction="RIGHT"
-        
-    def updateCoordinates(self, x, y):
-            
-        if self.direction=="LEFT":
-            x=x-1
-            
-        elif self.direction=="RIGHT":
-            x=x+1
-            
-        return(x,y)
+        self.x=300
+        self.y=200
+               
     
-    def move(self):
+    def move(self, direction):
         
-        (x,y)=self.updateCoordinates(x,y)
-        (x,y)=self.screen.blit
+        if direction=="LEFT":
+            self.x==1
+            
+        elif direction=="RIGHT":
+            self.x+=1
+            

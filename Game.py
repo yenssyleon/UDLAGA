@@ -6,6 +6,8 @@ import random
 class Game:
     
     def __init__(self):
+        
+        self.myShip=Ship()
         self.width=600
         self.height=400       
         self.mySky=Sky(self.width, self.height, 50)        
@@ -29,6 +31,7 @@ class Game:
             for event in pygame.event.get():
                 if event.type==pygame.QUIT:
                     pygame.quit()
+                    return True
                     
             self.screen.fill((0,0,0))
             
@@ -42,7 +45,9 @@ class Game:
             
             self.mySky.move()
             
-            x=self.width/2
+            self.myShip.move(self.checkKeys())
+            
+            x=self.myShip.x
             y=self.height/2
             self.screen.blit(self.shipsprite, (x,y))
             
@@ -53,11 +58,9 @@ class Game:
     def checkKeys(self):
             
         keys=pygame.key.get_pressed()
-        if keys[pygame.K_RIGHT]: self.snake.direction="RIGHT"
-        elif keys[pygame.K_LEFT]: self.snake.direction="LEFT"     
-        
-        self.checkKeys()   
-            
+        if keys[pygame.K_RIGHT]: return "RIGHT"
+        elif keys[pygame.K_LEFT]: return "LEFT"     
+                    
 
 myGame=Game()
 myGame.run()
