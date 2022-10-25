@@ -48,7 +48,7 @@ class Game:
             self.myShip.move(self.checkKeys())
             
             x=self.myShip.x
-            y=self.height/2
+            y=330
             self.screen.blit(self.shipsprite, (x,y))
             
             pygame.display.flip()

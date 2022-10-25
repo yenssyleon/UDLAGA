@@ -18,7 +18,7 @@ class Ship:
     def move(self, direction):
         
         if direction=="LEFT":
-            self.x==1
+            self.x-=1
             
         elif direction=="RIGHT":
             self.x+=1
