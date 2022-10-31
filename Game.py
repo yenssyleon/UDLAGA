@@ -48,20 +48,20 @@ class Game:
                 pygame.draw.circle(self.screen,(r,g,b), star, 1)
   
             #Definir los limites de la pantalla
-            if self.ship.x > self.width-64: self.ship.x=self.width-64 #Limite derecho
-            if self.ship.x < 8: self.ship.x=8 #Limite izquierdo
+            if self.myShip.x > self.width-64: self.myShip.x=self.width-64 #Limite derecho
+            if self.myShip.x < 8: self.myShip.x=8 #Limite izquierdo
             
-            if self.bullet.ybullet > self.height:
-                self.bullet.ybullet =self.ship.y
+            if self.myBullet.ymyBullet > self.height:
+                self.myBullet.ymyBullet =self.myShip.y
          
             self.mySky.move()
-            
             self.myShip.move(self.checkKeys())
             
             x=self.myShip.x
             y=330
             self.screen.blit(self.shipsprite, (x,y))
-            
+            self.screen.blit(self.bulletsprite,(x,self.myBullet.ymyBullet))
+
             pygame.display.flip()
             
             self.clock.tick(self.fps)
@@ -71,8 +71,8 @@ class Game:
         keys=pygame.key.get_pressed()
         if keys[pygame.K_RIGHT]: return "RIGHT"
         elif keys[pygame.K_LEFT]: return "LEFT"     
-        elif keys[pygame.K_w]: self.bullet.condition="FIRED"
-        else: self.ship.direction="STOP"
+        elif keys[pygame.K_w]: self.myBullet.condition="FIRED"
+        else: self.myShip.direction="STOP"
                    
 
 myGame=Game()

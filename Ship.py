@@ -10,7 +10,7 @@ move()
 class Ship:
     def __init__(self):
         
-        self.direction="RIGHT"
+        self.direction="STOP"
         self.x=300
         self.y=200
                
