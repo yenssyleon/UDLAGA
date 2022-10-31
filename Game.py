@@ -1,5 +1,6 @@
 from Sky import Sky
 from Ship import Ship
+from Bullet import Bullet
 import pygame
 import random
 
@@ -8,9 +9,10 @@ class Game:
     def __init__(self):
         
         self.myShip=Ship()
+        self.myBullet=Bullet()
         self.width=600
         self.height=400       
-        self.mySky=Sky(self.width, self.height, 50)        
+        self.mySky=Sky(self.width, self.height, 3010)        
         self.screen= pygame.display.set_mode((self.width, self.height))
         self.clock=pygame.time.Clock()
         self.fps=60
@@ -18,6 +20,8 @@ class Game:
         self.sprites= pygame.image.load("sprites.png")        
         self.shipsprite= pygame.Surface((64,64)).convert()
         self.shipsprite.blit(self.sprites,(0,0), (252,436, 64,64)) 
+        self.bulletsprite = pygame.image.load("bullet.png").convert() #dibujar la balla
+        self.bulletsprite.set_colorkey(0,0) #quitar el fondo de la bala
             
 # -------------------------------------------------------------------------------        
         
@@ -42,7 +46,14 @@ class Game:
                 g=random.randint(0,255)
                 b=random.randint(0,255)
                 pygame.draw.circle(self.screen,(r,g,b), star, 1)
+  
+            #Definir los limites de la pantalla
+            if self.ship.x > self.width-64: self.ship.x=self.width-64 #Limite derecho
+            if self.ship.x < 8: self.ship.x=8 #Limite izquierdo
             
+            if self.bullet.ybullet > self.height:
+                self.bullet.ybullet =self.ship.y
+         
             self.mySky.move()
             
             self.myShip.move(self.checkKeys())
@@ -60,7 +71,9 @@ class Game:
         keys=pygame.key.get_pressed()
         if keys[pygame.K_RIGHT]: return "RIGHT"
         elif keys[pygame.K_LEFT]: return "LEFT"     
-                    
+        elif keys[pygame.K_w]: self.bullet.condition="FIRED"
+        else: self.ship.direction="STOP"
+                   
 
 myGame=Game()
 myGame.run()

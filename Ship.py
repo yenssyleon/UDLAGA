@@ -23,3 +23,6 @@ class Ship:
         elif direction=="RIGHT":
             self.x+=1
             
+        elif direction == "STOP": 
+            pass    
+            
